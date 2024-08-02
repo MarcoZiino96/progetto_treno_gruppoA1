@@ -7,6 +7,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.idm.config.Beans;
 import com.idm.dao.TrenoDao;
@@ -22,8 +23,6 @@ public class UtenteService {
 
 
 	public Utente find(Integer id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		Utente utenteFind = utenteDao.find(id);
 		System.out.println(utenteFind);
 		return utenteFind;
@@ -31,9 +30,6 @@ public class UtenteService {
 
 
 	public Utente createUtente(Utente utente) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
-
 		Utente utenteNew = new Utente();
 		utenteNew.setCognome(utente.getCognome());
 		utenteNew.setNome(utente.getNome()); 
@@ -48,8 +44,6 @@ public class UtenteService {
 
 
 	public Utente update(Utente ref,int id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		Utente utente = find(id);
 		
 		utente.setCognome(ref.getCognome());
@@ -66,23 +60,17 @@ public class UtenteService {
 
 
 	public void delete(Utente ref) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		utenteDao.delete(ref);
 
 	}
 
 
 	public void delete(int id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		utenteDao.delete(id);
 
 	}
 	
 	public List<Utente> retrive(){
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		List<Utente> u = utenteDao.retrive();
 		System.out.println(u);
 		return u;

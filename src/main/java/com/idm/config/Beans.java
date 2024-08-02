@@ -42,7 +42,7 @@ import com.idm.dao.impl.VagoneRistoranteDaoImpl;
 
 
 @Configuration
-@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "com.idm")
 @EnableTransactionManagement
 public class Beans {
