@@ -58,6 +58,13 @@ public class UtenteDaoImpl extends DaoImpl implements UtenteDao {
 		Utente c = this.find(id); 
 		if (c!=null)
 			manager.remove(c);
+	}
+
+	@Override
+	public List<Utente> searchByUsername(String username) {
+		return manager.createQuery("select u from Utente u where u.username =:searchUser",Utente.class)
+				.setParameter("searchUser", username.toLowerCase()).getResultList();
+		
 	}	
 	
 

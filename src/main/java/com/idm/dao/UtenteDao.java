@@ -16,5 +16,6 @@ public interface UtenteDao {
 	public void delete(Utente ref);
 	public void delete(int id);
 	public List<Utente> retrive();
+	public List<Utente> searchByUsername(String username);
 	
 }

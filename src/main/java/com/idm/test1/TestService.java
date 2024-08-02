@@ -18,9 +18,9 @@ public class TestService {
 
 	public static void main(String[] args) {
 		//findUtente(1);
-//		Utente utente = testCreaUtente("Lollo", "My", "lollomy@gmail.com", LocalDate.parse("1980-01-01"), "aaaaaaa", "lollomy98");
+	Utente utente = testCreaUtente("Lollo", "My", "lollomy@gmail.com", LocalDate.parse("1980-01-01"), "aaaaaaa", "lollomy98");
 //		updateUtente( utente, 2);
-		testFindUtenti();
+		//testFindUtenti();
 
 
 	}
