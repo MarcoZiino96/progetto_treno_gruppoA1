@@ -1,4 +1,5 @@
 package com.idm.service;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -11,6 +12,7 @@ import com.idm.entity.FrecciaRossaBuilder;
 import com.idm.entity.Treno;
 import com.idm.entity.TrenoFilter;
 import com.idm.entity.Utente;
+import com.idm.vo.TrenoVO;
 
 
 
@@ -76,6 +78,7 @@ public class TrenoService {
 //		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
 //        trenoDao = context.getBean(TrenoDao.class);
 		Treno treno1 = new Treno();
+		treno1.setCompagnia(treno.getCompagnia());
 		treno1.setSigla(treno.getSigla());
 		treno1.setUtente(treno.getUtente());
 		treno1.setFoto(treno.getFoto());
@@ -93,11 +96,13 @@ public class TrenoService {
 		
 		Treno treno1 = find(id);
 		treno1.setSigla(treno.getSigla());
+		treno1.setCompagnia(treno.getCompagnia());
 		treno1.setUtente(treno.getUtente());
 		treno1.setFoto(treno.getFoto());
 		treno1.setLunghezza(treno.getLunghezza());
 		treno1.setPeso(treno.getPeso());
 		treno1.setPrezzo(treno.getPrezzo());
+		
 		trenoDao.update(treno1);
 		return treno1;
 	}
@@ -132,6 +137,26 @@ public class TrenoService {
 	
     public List<Treno> findByFilter(TrenoFilter filter) {
         return trenoFilterService.filterTreni(filter);
+    }
+    
+    public List<TrenoVO> getTreniVO() {
+        List<Treno> treni = trenoDao.retrive(); 
+        List<TrenoVO> trenoVOs = new ArrayList<>();
+        for (Treno treno : treni) {
+            TrenoVO vo = new TrenoVO();
+            
+            vo.setId(treno.getId());
+            vo.setUtente(treno.getUtente());
+            vo.setPrezzo(treno.getPrezzo());
+            vo.setPeso(treno.getPeso());
+            vo.setLunghezza(treno.getLunghezza());
+            vo.setSigla(treno.getSigla());
+            vo.setFoto(treno.getFoto());
+            vo.setCompagnia(treno.getCompagnia());
+            
+            trenoVOs.add(vo);
+        }
+        return trenoVOs;
     }
 	
 }

@@ -22,19 +22,27 @@ public class CategoriaDaoTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
         trenoService = context.getBean(TrenoService.class);
 
-		Treno  treno1 = new Treno(1.4, 5.0, 30.0, "TN", "x");
-		Treno  treno2= new Treno(1.4, 5.0, 30.0, "TN", "x");
-		Treno  treno3= new Treno(1.4, 5.0, 30.0, "TN", "x");
-		Treno  treno4= new Treno(1.4, 5.0, 30.0, "TN", "x");
-		Treno  treno5= new Treno(1.4, 5.0, 30.0, "TN", "x");
-		Treno  treno6= new Treno(2.4, 7.0, 32.0, "TN", "x");
+		Treno  treno1 = new Treno("TN", "foto1","HPPPP", 30.0, 5.0, 5.4 );
+		Treno  treno2= new Treno("FR", "foto2","HPPPPPR", 50.0, 8.0, 4.4 );
+		Treno  treno3= new Treno("IT", "foto3","HPP", 40.0, 6.0, 2.0 );
+		Treno  treno4= new Treno("TN", "foto4","HCCCC", 60.0, 5.3, 1.2 );
+		Treno  treno5= new Treno("FR", "foto5","HRPP", 34.0, 5.4, 1.8 );
+		Treno  treno6= new Treno("IT", "foto6","HCCC", 31.0, 6.1, 1.4 );
 
-//		trenoService.createTreno(treno1);
-//		trenoService.createTreno(treno2);
-//		trenoService.createTreno(treno3);
-//		trenoService.createTreno(treno4);
-//		trenoService.createTreno(treno5);
-//		trenoService.createTreno(treno6);
+//		Treno  treno1 = new Treno(1.4, 5.0, 30.0, "TN", "x");
+//		Treno  treno2= new Treno(1.4, 5.0, 30.0, "TN", "x");
+//		Treno  treno3= new Treno(1.4, 5.0, 30.0, "TN", "x");
+//		Treno  treno4= new Treno(1.4, 5.0, 30.0, "TN", "x");
+//		Treno  treno5= new Treno(1.4, 5.0, 30.0, "TN", "x");
+//		Treno  treno6= new Treno(2.4, 7.0, 32.0, "TN", "x");
+
+				
+		trenoService.createTreno(treno1);
+		trenoService.createTreno(treno2);
+		trenoService.createTreno(treno3);
+		trenoService.createTreno(treno4);
+		trenoService.createTreno(treno5);
+		trenoService.createTreno(treno6);
 		
 		
 //		treno1.setLunghezza(40.0);
@@ -44,27 +52,13 @@ public class CategoriaDaoTest {
 //		treno5.setLunghezza(33.0);
 //		treno6.setLunghezza(12.0);
 //		
-//
-//		treno1.setPeso(30.0);
-//		treno2.setPeso(45.0);
-//		treno3.setPeso(20.0);
-//		treno4.setPeso(10.0);
-//		treno5.setPeso(21.0);
+//		treno1.setPeso(50.0);
+//		treno2.setPeso(35.0);
+//		treno3.setPeso(51.0);
+//		treno4.setPeso(41.0);
+//		treno5.setPeso(31.0);
 //		treno6.setPeso(11.0);
 //		
-//		treno1.setSigla("FR");
-//		treno2.setSigla("IT");
-//		treno3.setSigla("TF");
-//		treno4.setSigla("TR");
-//		treno5.setSigla("FB");
-//		treno6.setSigla("FA");
-//		
-//		treno1.setPrezzo(1.5);
-//		treno2.setPrezzo(2.0);
-//		treno3.setPrezzo(3.0);
-//		treno4.setPrezzo(1.7);
-//		treno5.setPrezzo(2.1);
-//		treno6.setPrezzo(1.1);
 //
 //		trenoService.update(treno1, 1);
 //		trenoService.update(treno2, 2);
