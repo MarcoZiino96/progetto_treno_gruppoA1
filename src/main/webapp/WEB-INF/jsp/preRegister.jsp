@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,48 +45,50 @@
             width: 90%;
             margin: auto;
         }
-        .message {
+         .message {
             color: #d44;
             font-size: 1.2em;
+        }
+        .error-list {
+            color: red;
+            font-size: 0.9em;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+  <div class="container">
         <h2>Registrazione Utente</h2>
-        <form action="${pageContext.request.contextPath}/utente" method="post">
-            <!-- Se ci sono messaggi di errore, mostrali qui -->
-            <c:if test="${not empty errorMessage}">
-                <div class="message">${errorMessage}</div>
-            </c:if>
-            
-            <!-- Campo Nome -->
+      
+        <form:form modelAttribute="utente" action="${pageContext.request.contextPath}/postRegister" method="post">
+
             <label for="nome">Nome:</label>
-            <input type="text" id="nome" name="nome" value="${utente.nome}" required />
-            
-            <!-- Campo Cognome -->
+            <form:input path="nome" />
+            <form:errors path="nome" cssClass="message" />
+
             <label for="cognome">Cognome:</label>
-            <input type="text" id="cognome" name="cognome" value="${utente.cognome}" required />
-            
-            <!-- Campo Email -->
+            <form:input path="cognome" />
+            <form:errors path="cognome" cssClass="message" />
+
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" value="${utente.email}" required />
-            
-            <!-- Campo Data di Nascita -->
+            <form:input path="email" />
+            <form:errors path="email" cssClass="message" />
+
             <label for="dataNascita">Data di Nascita:</label>
-            <input type="date" id="dataNascita" name="dataNascita" value="${utente.dataNascita}" required />
-            
-            <!-- Campo Username -->
+            <form:input path="dataNascita" type = "date"/>
+            <form:errors path="dataNascita" cssClass="message" />
+          <!--  <div class="message">${errorMessage}</div>--> 
+
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" value="${utente.username}" required />
-            
-            <!-- Campo Password -->
+            <form:input path="username" />
+            <form:errors path="username" cssClass="message" />
+
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" value="${utente.password}" required />
-            
-            <!-- Pulsante di Invio -->
+            <form:input path="password" />
+            <form:errors path="password" cssClass="message" />
+
             <input type="submit" value="Registrati" />
-        </form>
+        </form:form> 
+        
     </div>
 </body>
 </html>

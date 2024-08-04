@@ -1,6 +1,7 @@
 package com.idm.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.BeanFactory;
@@ -14,6 +15,7 @@ import com.idm.dao.TrenoDao;
 import com.idm.dao.UtenteDao;
 import com.idm.entity.Treno;
 import com.idm.entity.Utente;
+import com.idm.vo.UtenteVO;
 
 @Component
 public class UtenteService {
@@ -29,17 +31,17 @@ public class UtenteService {
 	}
 
 
-	public Utente createUtente(Utente utente) {
+	public Utente createUtente(UtenteVO utenteVo) {
 		Utente utenteNew = new Utente();
-		utenteNew.setCognome(utente.getCognome());
-		utenteNew.setNome(utente.getNome()); 
-		utenteNew.setEmail(utente.getEmail());
-		utenteNew.setDataNascita(utente.getDataNascita()); 
-		utenteNew.setPassword(utente.getPassword());
-		utenteNew.setUsername(utente.getUsername());
+		utenteNew.setCognome(utenteVo.getCognome());
+		utenteNew.setNome(utenteVo.getNome()); 
+		utenteNew.setEmail(utenteVo.getEmail());
+		utenteNew.setDataNascita(LocalDate.parse(utenteVo.getDataNascita())); 
+		utenteNew.setPassword(utenteVo.getPassword());
+		utenteNew.setUsername(utenteVo.getUsername());
 
-		utente = utenteDao.create(utente);
-		return utente;
+		utenteDao.create(utenteNew);
+		return utenteNew;
 	}
 
 

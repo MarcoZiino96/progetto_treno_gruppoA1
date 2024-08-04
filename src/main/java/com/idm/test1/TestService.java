@@ -17,7 +17,7 @@ import com.idm.service.TrenoService;
 import com.idm.service.UtenteService;
 public class TestService {
 	
-	@Autowired
+	//@Autowired
 	private static UtenteService utenteService;
 
 
@@ -52,7 +52,7 @@ public class TestService {
 		utente1.setPassword(utente.getPassword());
 		utente1.setUsername(utente.getUsername());
 
-		utenteService.createUtente(utente);
+//		utenteService.createUtente(utente);
 		System.out.println("Creato Utente: " + utente);
 		return utente;
 	}
