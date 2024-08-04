@@ -18,5 +18,6 @@ public interface UtenteDao {
 	public List<Utente> retrive();
 	public Utente findByUsername(String username);
 	public Utente findByEmail(String email);
+	public List<Utente> searchByUsername(String username);
 	
 }

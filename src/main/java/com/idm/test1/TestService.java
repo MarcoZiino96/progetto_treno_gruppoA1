@@ -31,6 +31,7 @@ public class TestService {
         String email = "giovanni.rossi@example.com";
         String password = "securePassword123";
 		//findUtente(1);
+<<<<<<< HEAD
         
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
           utenteService = context.getBean(UtenteService.class);
@@ -38,6 +39,11 @@ public class TestService {
 		
 		 creaUtente(nuovoUtente);
 		 System.out.println(nuovoUtente);
+=======
+	Utente utente = testCreaUtente("Lollo", "My", "lollomy@gmail.com", LocalDate.parse("1980-01-01"), "aaaaaaa", "lollomy98");
+//		updateUtente( utente, 2);
+		//testFindUtenti();
+>>>>>>> refs/remotes/origin/lorenzo
 
 
 	}
