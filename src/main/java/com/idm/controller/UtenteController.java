@@ -41,27 +41,31 @@ public class UtenteController {
 
 	@PostMapping("/postRegister")
 	public String registerUser(@Valid @ModelAttribute("utente") UtenteVO utenteVo, BindingResult bindingResult, Model model) {
-	    
-		if (bindingResult.hasErrors()) {
-	        return "preRegister";     
-	    }
-		 Utente usernameUtente = utenteService.findByUsername(utenteVo.getUsername());
-		 Utente emailUtente = utenteService.findByEmail(utenteVo.getEmail());
-		   
-		    if (emailUtente != null || usernameUtente != null ) {
-		        bindingResult.rejectValue("email", "error.email", "Email già esistente");
-		        bindingResult.rejectValue("username", "error.username", "Username già esistente");
-		        return "preRegister";
-		    }
-		   
-	    try {
-	        utenteService.createUtente(utenteVo);
-	        
-	    } catch (Exception e) {
-	        return "preRegister";
-	    }
 
-	    return "redirect:/login";
+		if (bindingResult.hasErrors()) {
+			return "preRegister";     
+		}
+		Utente usernameUtente = utenteService.findByUsername(utenteVo.getUsername());
+		Utente emailUtente = utenteService.findByEmail(utenteVo.getEmail());
+
+		if (emailUtente != null) {
+			bindingResult.rejectValue("email", "error.email", "Email già esistente");
+			return "preRegister";
+		}
+
+		if(usernameUtente != null) {
+			bindingResult.rejectValue("username", "error.username", "Username già esistente");
+			return "preRegister";
+		}
+
+		try {
+			utenteService.createUtente(utenteVo);
+
+		} catch (Exception e) {
+			return "preRegister";
+		}
+
+		return "redirect:/login";
 	}
 }
 
