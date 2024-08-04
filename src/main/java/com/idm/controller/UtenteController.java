@@ -59,6 +59,37 @@ public class UtenteController {
 
 	    return "redirect:/login";
 	}
+	@Autowired
+	private UtenteService utenteService;
+
+	@PostMapping("/login")
+	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
+		List<Utente> listaUtenti = utenteService.searchByUsername(username);
+		if (listaUtenti.isEmpty()) {
+			model.addAttribute("error", "Nessun utente registrato");
+			return "formlogin";
+		} else {
+			for (Utente ut : listaUtenti) {
+				if (ut.getPassword().equals(password)) {
+					session.setAttribute("Loggato", "SI");
+					session.setAttribute("utente", ut);    
+					model.addAttribute("message", "ciao " + username); 
+					return "message";
+				} else {
+					model.addAttribute("error", "Password sbagliata");
+					return "formlogin";
+				}
+			}
+		}    
+		return "message";
+	}
+
+	@PostMapping("/logout")
+	public String logout(HttpSession session,Model model) {
+		session.invalidate();
+		model.addAttribute("message", "Sei stato disconnesso con successo.");
+		return "redirect:/login";
+	}
 }
 
 

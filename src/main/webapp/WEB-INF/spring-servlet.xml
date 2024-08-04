@@ -13,6 +13,7 @@
 
     <context:component-scan base-package="com.idm.controller" />  
     <context:component-scan base-package="com.idm.config" /> 
+<<<<<<< HEAD
     <mvc:annotation-driven />
 
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
@@ -26,3 +27,20 @@
                location="/WEB-INF/img/" 
                cache-period="10000" /> 
 </beans>  
+=======
+    <context:component-scan base-package="application.properties" /> 
+    <mvc:annotation-driven/>  
+
+     <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
+        <property name="prefix" value="/WEB-INF/jsp/"></property>  
+        <property name="suffix" value=".jsp"></property>          
+     </bean> 
+      
+     <bean class="org.springframework.web.servlet.resource.ResourceHttpRequestHandler" />    
+
+     <mvc:resources mapping="/resources/**" 
+               location="/WEB-INF/img/" 
+               cache-period="10000" /> 
+      
+</beans>  
+>>>>>>> refs/remotes/origin/lorenzo
