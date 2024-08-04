@@ -24,14 +24,14 @@ public class UtenteController {
 	}
 
 	@PostMapping("/login")
-	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-		List<Utente> listaUtenti = utenteService.searchByUsername(username);
+	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model,UtenteVoLogin utenteVoLogin) {
+		List<Utente> listaUtenti = utenteService.searchByUsername(utenteVoLogin.getUsername());
 		if (listaUtenti.isEmpty()) {
 			model.addAttribute("error", "Nessun utente registrato");
 			return "formlogin";
 		} else {
 			for (Utente ut : listaUtenti) {
-				if (ut.getPassword().equals(password)) {
+				if (ut.getPassword().equals(utenteVoLogin.getPassword())) {
 					session.setAttribute("Loggato", "SI");
 					session.setAttribute("utente", ut);    
 					model.addAttribute("message", "ciao " + username); 
