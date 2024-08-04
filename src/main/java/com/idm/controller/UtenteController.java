@@ -36,9 +36,6 @@ public class UtenteController {
 		return "preRegister";
 	}
 
-
-
-
 	@PostMapping("/postRegister")
 	public String registerUser(@Valid @ModelAttribute("utente") UtenteVO utenteVo, BindingResult bindingResult, Model model) {
 	    
@@ -52,8 +49,7 @@ public class UtenteController {
 		        bindingResult.rejectValue("email", "error.email", "Email già esistente");
 		        bindingResult.rejectValue("username", "error.username", "Username già esistente");
 		        return "preRegister";
-		    }
-		   
+		    }  
 	    try {
 	        utenteService.createUtente(utenteVo);
 	        
@@ -68,21 +64,6 @@ public class UtenteController {
 
 
 
-//@PostMapping("/register")
-//public String registerUser(@ModelAttribute("utente") Utente utente, Model model) {
-//  
-//	System.out.println("Registrazione completata, redirezionamento a /login");
-//	try {
-//      //System.out.println("Utente ricevuto per registrazione: " + utente.toString());
-//      //utenteService.createUtente(utente);
-//      System.out.println("Registrazione completata, redirezionamento a /login");
-//      return "redirect:/login";
-//      
-//  } catch (Exception e) {
-//      e.printStackTrace();
-//      model.addAttribute("errorMessage", "Errore durante la registrazione: " + e.getMessage());
-//      return "register";
-//  }
-//}
+
 
 
