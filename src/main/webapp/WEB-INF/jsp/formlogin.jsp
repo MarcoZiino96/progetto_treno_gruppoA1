@@ -4,7 +4,7 @@
 
 <body> 
 
-<form  method="post" action="login">  
+<form  method="post" action="formlogin">  
 	UserName : <input id="username" name="username"/> <br><br>  
 	Password : <input id="password" name="password"/> <br><br>   
 	<input type="submit" name="submit" formaction="login" value="Login">  

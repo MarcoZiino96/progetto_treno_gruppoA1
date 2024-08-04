@@ -59,7 +59,7 @@
   <div class="container">
         <h2>Registrazione Utente</h2>
       
-        <form:form modelAttribute="utente" action="/postRegister" method="post">
+        <form:form modelAttribute="utente" action="postRegister" method="post">
 
             <label for="nome">Nome:</label>
             <form:input path="nome" />
@@ -76,7 +76,6 @@
             <label for="dataNascita">Data di Nascita:</label>
             <form:input path="dataNascita" type = "date"/>
             <form:errors path="dataNascita" cssClass="message" />
-          <!--  <div class="message">${errorMessage}</div>--> 
 
             <label for="username">Username:</label>
             <form:input path="username" />
