@@ -77,6 +77,15 @@ public class UtenteService {
 		System.out.println(u);
 		return u;
 	}
+	
+	public Utente findByUsername(String username){
+		
+		return utenteDao.findByUsername(username);
+	}
+public Utente findByEmail(String email){
+		
+		return utenteDao.findByEmail(email);
+	}
 
 
 

@@ -10,6 +10,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.idm.entity.Utente;
 import com.idm.service.UtenteService;
 import com.idm.vo.UtenteVO;
 import antlr.StringUtils;
@@ -43,12 +45,19 @@ public class UtenteController {
 		if (bindingResult.hasErrors()) {
 	        return "preRegister";     
 	    }
-		
+		 Utente usernameUtente = utenteService.findByUsername(utenteVo.getUsername());
+		 Utente emailUtente = utenteService.findByEmail(utenteVo.getEmail());
+		   
+		    if (emailUtente != null || usernameUtente != null ) {
+		        bindingResult.rejectValue("email", "error.email", "Email già esistente");
+		        bindingResult.rejectValue("username", "error.username", "Username già esistente");
+		        return "preRegister";
+		    }
+		   
 	    try {
 	        utenteService.createUtente(utenteVo);
 	        
 	    } catch (Exception e) {
-//	        model.addAttribute("errorMessage", "La data è obbligatoria");
 	        return "preRegister";
 	    }
 
