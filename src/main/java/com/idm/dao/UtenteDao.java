@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import com.idm.entity.Utente;
 
 
-@Component
+
 public interface UtenteDao {
 	public Utente find(Integer id);
 	public Utente create(Utente ref);
@@ -16,5 +16,7 @@ public interface UtenteDao {
 	public void delete(Utente ref);
 	public void delete(int id);
 	public List<Utente> retrive();
+	public Utente findByUsername(String username);
+	public Utente findByEmail(String email);
 	
 }

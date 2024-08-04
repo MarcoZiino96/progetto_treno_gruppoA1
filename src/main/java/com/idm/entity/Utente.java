@@ -18,6 +18,7 @@ public class Utente implements Bean{
 	private String cognome;
 	private LocalDate dataNascita;
 	private String password;
+	@Column(unique = true)
 	private String username;
 	private String email;
 	

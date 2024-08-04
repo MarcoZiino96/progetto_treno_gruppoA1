@@ -11,9 +11,9 @@
         http://www.springframework.org/schema/mvc  
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">  
 
-    <context:component-scan base-package="com.idm" />  
-
-    <mvc:annotation-driven/>  
+    <context:component-scan base-package="com.idm.controller" />  
+    <context:component-scan base-package="com.idm.config" /> 
+    <mvc:annotation-driven />
 
      <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">  
         <property name="prefix" value="/WEB-INF/jsp/"></property>  
@@ -25,5 +25,4 @@
      <mvc:resources mapping="/resources/**" 
                location="/WEB-INF/img/" 
                cache-period="10000" /> 
-      
 </beans>  

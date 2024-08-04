@@ -1,5 +1,8 @@
 package com.idm.config;
 import javax.sql.DataSource;
+import javax.validation.Validator;
+
+import org.hibernate.validator.spi.messageinterpolation.LocaleResolver;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -13,38 +16,20 @@ import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import com.idm.dao.PrenotazioneDao;
-import com.idm.dao.VagonePasseggeriDao;
-import com.idm.dao.VotoDao;
-import com.idm.dao.impl.PrenotazioneDaoImpl;
-import com.idm.dao.LocomotivaDao;
-import com.idm.dao.TrenoDao;
-import com.idm.dao.UtenteDao;
-import com.idm.dao.impl.LocomotivaDaoImpl;
-import com.idm.dao.impl.TrenoDaoImpl;
-import com.idm.dao.impl.UtenteDaoImpl;
-import com.idm.dao.impl.VotoDaoImpl;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+
 import com.idm.entity.Locomotiva;
 import com.idm.entity.VagoneCargo;
 import com.idm.entity.VagonePasseggeri;
 import com.idm.entity.VagoneRistorante;
 
-//import entity.CabinaPasseggieri;
-//import entity.CabinaRistorante;
-//import entity.CargoConcreto;
-//import entity.LocomotivaConcreta;
-
-import com.idm.dao.VagoneCargoDao;
-import com.idm.dao.VagoneRistoranteDao;
-import com.idm.dao.impl.VagoneCargoDaoImpl;
-import com.idm.dao.impl.VagonePasseggeriDaoImpl;
-import com.idm.dao.impl.VagoneRistoranteDaoImpl;
-
-
 @Configuration
-@PropertySource("application.properties")
+@PropertySource("classpath:application.properties")
 @ComponentScan(basePackages = "com.idm")
 @EnableTransactionManagement
+@EnableWebMvc
 public class Beans {
 
 	@Value("${spring.datasource.url}")
@@ -88,7 +73,15 @@ public class Beans {
 		adapter.setGenerateDdl(true);         
 		adapter.setShowSql(true);               
 		return adapter;
-	}	
+	}
+	
+	@Bean
+    public LocalValidatorFactoryBean validator() {
+        return new LocalValidatorFactoryBean();
+    }
+	
+
+
 
 	/**** transazioni ****/
 	@Bean
@@ -98,10 +91,8 @@ public class Beans {
 		return transactionManager;
 	}
 	
-
-
     @Bean
-    @Scope("prototype") 
+    @Scope
     public Locomotiva locomotiva() {
         String potenza = "potenzaAlta"; // Valore di default
         double prezzo = 70000.0;        // Valore di default
@@ -111,7 +102,7 @@ public class Beans {
     }
 
     @Bean
-    @Scope("prototype") 
+    @Scope
     public VagonePasseggeri vagonePasseggeri() {
         double peso = 1000.0;           // Valore di default
         double prezzo = 40000.0;        // Valore di default
@@ -121,7 +112,7 @@ public class Beans {
     }
 
     @Bean
-    @Scope("prototype") 
+    @Scope
     public VagoneRistorante vagoneRistorante() {
         double peso = 1200.0;           // Valore di default
         double prezzo = 60000.0;        // Valore di default
@@ -131,7 +122,7 @@ public class Beans {
     }
 
     @Bean
-    @Scope("prototype") 
+    @Scope
     public VagoneCargo vagoneCargo() {
         double peso = 1500.0;           // Valore di default
         double prezzo = 70000.0;        // Valore di default

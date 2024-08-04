@@ -1,18 +1,21 @@
 package com.idm.service;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.idm.config.Beans;
 import com.idm.dao.TrenoDao;
 import com.idm.dao.UtenteDao;
 import com.idm.entity.Treno;
 import com.idm.entity.Utente;
+import com.idm.vo.UtenteVO;
 
 @Component
 public class UtenteService {
@@ -22,34 +25,27 @@ public class UtenteService {
 
 
 	public Utente find(Integer id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		Utente utenteFind = utenteDao.find(id);
 		System.out.println(utenteFind);
 		return utenteFind;
 	}
 
 
-	public Utente createUtente(Utente utente) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
-
+	public Utente createUtente(UtenteVO utenteVo) {
 		Utente utenteNew = new Utente();
-		utenteNew.setCognome(utente.getCognome());
-		utenteNew.setNome(utente.getNome()); 
-		utenteNew.setEmail(utente.getEmail());
-		utenteNew.setDataNascita(utente.getDataNascita()); 
-		utenteNew.setPassword(utente.getPassword());
-		utenteNew.setUsername(utente.getUsername());
+		utenteNew.setCognome(utenteVo.getCognome());
+		utenteNew.setNome(utenteVo.getNome()); 
+		utenteNew.setEmail(utenteVo.getEmail());
+		utenteNew.setDataNascita(LocalDate.parse(utenteVo.getDataNascita())); 
+		utenteNew.setPassword(utenteVo.getPassword());
+		utenteNew.setUsername(utenteVo.getUsername());
 
-		utente = utenteDao.create(utente);
-		return utente;
+		utenteDao.create(utenteNew);
+		return utenteNew;
 	}
 
 
 	public Utente update(Utente ref,int id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		Utente utente = find(id);
 		
 		utente.setCognome(ref.getCognome());
@@ -66,26 +62,29 @@ public class UtenteService {
 
 
 	public void delete(Utente ref) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		utenteDao.delete(ref);
 
 	}
 
 
 	public void delete(int id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		utenteDao.delete(id);
 
 	}
 	
 	public List<Utente> retrive(){
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        utenteDao = context.getBean(UtenteDao.class);
 		List<Utente> u = utenteDao.retrive();
 		System.out.println(u);
 		return u;
+	}
+	
+	public Utente findByUsername(String username){
+		
+		return utenteDao.findByUsername(username);
+	}
+public Utente findByEmail(String email){
+		
+		return utenteDao.findByEmail(email);
 	}
 
 
