@@ -61,7 +61,6 @@ public class UtenteDaoImpl extends DaoImpl implements UtenteDao {
 			manager.remove(c);
 	}
 
-<<<<<<< HEAD
 	 public Utente findByUsername(String username) {
 	        try {
 	            Query query = manager.createQuery("SELECT u FROM Utente u WHERE u.username = :username", Utente.class);
@@ -83,15 +82,15 @@ public class UtenteDaoImpl extends DaoImpl implements UtenteDao {
 	            return null;
 	        }
 	    }
-	}
-=======
+	
 	@Override
 	public List<Utente> searchByUsername(String username) {
 		return manager.createQuery("select u from Utente u where u.username =:searchUser",Utente.class)
-				.setParameter("searchUser", username.toLowerCase()).getResultList();
+				.setParameter("searchUser", username).getResultList();
 		
 	}	
->>>>>>> refs/remotes/origin/lorenzo
+}
+
 	
 
 

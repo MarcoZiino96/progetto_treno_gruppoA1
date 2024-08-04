@@ -59,7 +59,7 @@
   <div class="container">
         <h2>Registrazione Utente</h2>
       
-        <form:form modelAttribute="utente" action="${pageContext.request.contextPath}/postRegister" method="post">
+        <form:form modelAttribute="utente" action="/postRegister" method="post">
 
             <label for="nome">Nome:</label>
             <form:input path="nome" />

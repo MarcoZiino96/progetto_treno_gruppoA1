@@ -1,20 +1,19 @@
 package com.idm.controller;
+import java.util.List;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import com.idm.entity.Utente;
 import com.idm.service.UtenteService;
 import com.idm.vo.UtenteVO;
-import antlr.StringUtils;
+
 
 
 
@@ -24,15 +23,14 @@ public class UtenteController {
 	@Autowired
 	UtenteService utenteService;
 
-	@GetMapping("/login")
+	@GetMapping("/formlogin")
 	public String login(Model model ) {
 		model.addAttribute("message", "benvenuto nel login");
 		return "login";
 	}
 
 	@GetMapping("/preRegister")
-	public String showRegister(Model model) {
-		model.addAttribute("utente", new UtenteVO());
+	public String showRegister() {
 		return "preRegister";
 	}
 
@@ -59,9 +57,7 @@ public class UtenteController {
 
 	    return "redirect:/login";
 	}
-	@Autowired
-	private UtenteService utenteService;
-
+	
 	@PostMapping("/login")
 	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
 		List<Utente> listaUtenti = utenteService.searchByUsername(username);

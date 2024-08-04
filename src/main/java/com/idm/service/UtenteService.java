@@ -25,25 +25,14 @@ public class UtenteService {
 
 
 	public Utente find(Integer id) {
-<<<<<<< HEAD
-=======
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
->>>>>>> refs/remotes/origin/lorenzo
 		Utente utenteFind = utenteDao.find(id);
 		System.out.println(utenteFind);
 		return utenteFind;
 	}
 
 
-<<<<<<< HEAD
-	public Utente createUtente(UtenteVO utenteVo) {
-=======
-	public Utente createUtente(Utente utente) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
 
->>>>>>> refs/remotes/origin/lorenzo
+	public Utente createUtente(UtenteVO utenteVo) {
 		Utente utenteNew = new Utente();
 		utenteNew.setCognome(utenteVo.getCognome());
 		utenteNew.setNome(utenteVo.getNome()); 
@@ -58,11 +47,6 @@ public class UtenteService {
 
 
 	public Utente update(Utente ref,int id) {
-<<<<<<< HEAD
-=======
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
->>>>>>> refs/remotes/origin/lorenzo
 		Utente utente = find(id);
 
 		utente.setCognome(ref.getCognome());
@@ -79,32 +63,17 @@ public class UtenteService {
 
 
 	public void delete(Utente ref) {
-<<<<<<< HEAD
-=======
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
->>>>>>> refs/remotes/origin/lorenzo
 		utenteDao.delete(ref);
 
 	}
 
 
 	public void delete(int id) {
-<<<<<<< HEAD
-=======
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
->>>>>>> refs/remotes/origin/lorenzo
 		utenteDao.delete(id);
 
 	}
 
 	public List<Utente> retrive(){
-<<<<<<< HEAD
-=======
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
->>>>>>> refs/remotes/origin/lorenzo
 		List<Utente> u = utenteDao.retrive();
 		System.out.println(u);
 		return u;
@@ -120,8 +89,6 @@ public Utente findByEmail(String email){
 	}
 
 	public List<Utente> searchByUsername(String userName){
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-		utenteDao = context.getBean(UtenteDao.class);
 		List<Utente> u = utenteDao.searchByUsername(userName);
 		System.out.println(u);
 		return u;
