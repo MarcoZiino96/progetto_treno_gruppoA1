@@ -55,6 +55,20 @@ public class Treno implements Bean {
 			this.foto = foto;
 		}
 	
+	 public Treno(String compagnia, String foto, String sigla, Double lunghezza, Double peso, Double prezzo ) {
+		 this.compagnia = compagnia;
+		 this.foto = foto;
+		 this.sigla = sigla;
+		 this.lunghezza = lunghezza;
+		 this.peso = peso;
+		 this.prezzo = prezzo;
+			
+		
+		
+		}
+	
+	
+	
 
 
 

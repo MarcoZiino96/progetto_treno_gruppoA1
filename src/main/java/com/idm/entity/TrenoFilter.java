@@ -11,6 +11,9 @@ public class TrenoFilter {
 	private String siglaContains = null;
 	private String utente = null;
 	
+	 private String termineRicerca;
+	
+
 	public Integer getPrezzoMin() {
 		return prezzoMin;
 	}
@@ -58,6 +61,13 @@ public class TrenoFilter {
 	}
 	public void setUtente(String utente) {
 		this.utente = utente;
+	}
+	
+	public String getTermineRicerca() {
+		return termineRicerca;
+	}
+	public void setTermineRicerca(String termineRicerca) {
+		this.termineRicerca = termineRicerca;
 	}
 	
 }
