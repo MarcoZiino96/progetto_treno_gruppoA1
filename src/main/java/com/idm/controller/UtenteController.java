@@ -9,8 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.idm.entity.Utente;
 import com.idm.service.UtenteService;
 import com.idm.vo.UtenteVO;
@@ -28,6 +26,7 @@ public class UtenteController {
 		model.addAttribute("message", "benvenuto nel login");
 		return "formlogin";
 	}
+
 
 	@GetMapping("/preRegister")
 	public String showRegister(@ModelAttribute("utente") UtenteVO utenteVo) {
@@ -115,6 +114,19 @@ public class UtenteController {
 		model.addAttribute("message", "Sei stato disconnesso con successo.");
 		return "redirect:/formlogin";
 	}
+
+	@GetMapping("/header")
+	public String showHeader(UtenteVoLogin utenteVo) {
+		
+		return "header";
+	}
+	
+//	@GetMapping("/footer")
+//	public String showFooter(UtenteVoLogin utenteVo) {
+//		
+//		return "footer";
+//	}
+
 }
 
 
