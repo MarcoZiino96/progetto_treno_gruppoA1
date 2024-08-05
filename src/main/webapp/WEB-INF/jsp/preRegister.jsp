@@ -45,14 +45,15 @@
             width: 90%;
             margin: auto;
         }
-         .message {
-            color: #d44;
-            font-size: 1.2em;
+        h2, .submit{
+        text-align: center;
+        font-size: 1.5rem;
         }
-        .error-list {
-            color: red;
-            font-size: 0.9em;
+        .message{
+        color:red;
+        font-size: 0.8rem;
         }
+       
     </style>
 </head>
 <body>
@@ -85,7 +86,10 @@
             <form:input path="password" />
             <form:errors path="password" cssClass="message" />
 
+            <div class="submit">
             <input type="submit" value="Registrati" />
+            </div>
+            
         </form:form> 
         
     </div>

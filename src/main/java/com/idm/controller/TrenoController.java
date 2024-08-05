@@ -30,14 +30,10 @@ import com.idm.vo.TrenoVO;
 		@Autowired
 		private TrenoService trenoService;
 				
-//	    @GetMapping ("/home")
-//	    public String home(Model model) {
-//	    	List<TrenoVO> treni = trenoService.getTreniVO();
-//	    	 System.out.println("Numero di treni recuperati: " + treni.size()); //
-//	    	model.addAttribute("treni", treni);
-//	    	System.out.println("home");
-//	        return "home"; // Cerca il file home.jsp in /WEB-INF/jsp/
-//	    }
+	    @GetMapping ("/home")
+	    public String home(Model model) {
+	        return "home"; 
+	    }
 //	    
 //	    @GetMapping("/home")
 //	    public String search(@RequestParam(required = false) String termineRicerca,
@@ -50,22 +46,24 @@ import com.idm.vo.TrenoVO;
 //	        model.addAttribute("treni", treni);
 //	        return "home";
 //	    }
+//	    
+//	}
 
-	    @GetMapping("/search")
-	    public String search(@RequestParam(required = false) String termineRicerca, Model model) {
-	        List<TrenoVO> treni;
-	        
-	        if (termineRicerca != null && !termineRicerca.isEmpty()) {
-	            TrenoFilter filter = new TrenoFilter();
-	            filter.setTermineRicerca(termineRicerca);
-	            treni = trenoService.searchTreni(filter);
-	        } else {
-	            treni = trenoService.getTreniVO();
-	        }
-
-	        model.addAttribute("treni", treni);
-	        return "search"; // Cerca il file search.jsp in /WEB-INF/jsp/
-	    }
+//	    @GetMapping("/search")
+//	    public String search(@RequestParam(required = false) String termineRicerca, Model model) {
+//	        List<TrenoVO> treni;
+//	        
+//	        if (termineRicerca != null && !termineRicerca.isEmpty()) {
+//	            TrenoFilter filter = new TrenoFilter();
+//	            filter.setTermineRicerca(termineRicerca);
+//	            treni = trenoService.searchTreni(filter);
+//	        } else {
+//	            treni = trenoService.getTreniVO();
+//	        }
+//
+//	        model.addAttribute("treni", treni);
+//	        return "search"; // Cerca il file search.jsp in /WEB-INF/jsp/
+//	    }
 
 		
 

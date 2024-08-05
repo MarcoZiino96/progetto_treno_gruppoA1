@@ -1,24 +1,26 @@
 package com.idm.vo;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class UtenteVoLogin {
 
-	@NotNull
-	@Size(min=2,max=30)
-	private String Username;
+	@NotBlank(message = "username obbligatorio")
+    @Pattern(regexp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>.]).{5,}$",
+    message = "Username deve contenere: 1 numero, 1 carattere speciale, Min 5 caratteri")
+	private String username;
 
-	@NotNull
-	@Size(min=8,max=30)
+	 @NotBlank(message = "Password obbligatoria")
+	 @Pattern(regexp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>.]).{8,}$",
+	          message = "Password deve contenere: 1 lettera maiuscola, 1 lettera minuscola, 1 numero, 1 carattere speciale, Min 8 caratteri")
 	private String password;
 
 	public String getUsername() {
-		return Username;
+		return username;
 	}
 
 	public void setUsername(String username) {
-		Username = username;
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -31,7 +33,7 @@ public class UtenteVoLogin {
 
 	@Override
 	public String toString() {
-		return "UtenteVoLogin [Username=" + Username + ", password=" + password + "]";
+		return "UtenteVoLogin [Username=" + username + ", password=" + password + "]";
 	}
 
 

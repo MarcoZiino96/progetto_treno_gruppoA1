@@ -101,19 +101,7 @@
     <version>5.3.4</version>
 </dependency>
 
-
-
-
 <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
-<dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator</artifactId>
-    <version>8.0.1.Final</version>
-</dependency>
-
-
-
-
 <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>javax.servlet-api</artifactId>
@@ -128,7 +116,6 @@
     <version>2.0.1.Final</version>
 </dependency>
 
-<<<<<<< HEAD
 <dependency>
     <groupId>javax.servlet</groupId>
     <artifactId>jstl</artifactId>
@@ -164,29 +151,6 @@
     <scope>provided</scope>
 </dependency>
 -->
-
-
-    
-=======
-<dependency>
-    <groupId>javax.servlet</groupId>
-    <artifactId>jstl</artifactId>
-    <version>1.2</version>
-</dependency>
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> 4fe4e1a55a96a3eb876cd9c538b9558404bac5ac
   </dependencies>
   
   <build>

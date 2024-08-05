@@ -1,5 +1,5 @@
 package com.idm.controller;
-import java.util.List;
+
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 import com.idm.entity.Utente;
 import com.idm.service.UtenteService;
 import com.idm.vo.UtenteVO;
-
-
-
+import com.idm.vo.UtenteVoLogin;
 
 @Controller
 public class UtenteController {
@@ -24,20 +23,21 @@ public class UtenteController {
 	UtenteService utenteService;
 
 	@GetMapping("/formlogin")
-	public String login(Model model ) {
+	public String login(@ModelAttribute("utente") UtenteVoLogin utenteVoLogin, Model model ) {
+		
 		model.addAttribute("message", "benvenuto nel login");
 		return "formlogin";
 	}
 
 	@GetMapping("/preRegister")
 	public String showRegister(@ModelAttribute("utente") UtenteVO utenteVo) {
-	
+
 		return "preRegister";
 	}
 
 	@PostMapping("/postRegister")
 	public String registerUser(@Valid @ModelAttribute("utente") UtenteVO utenteVo, BindingResult bindingResult, Model model) {
-	    
+
 		if (bindingResult.hasErrors()) {
 			return "preRegister";     
 		}
@@ -48,9 +48,9 @@ public class UtenteController {
 			bindingResult.rejectValue("email", "error.email", "Email già esistente");
 			bindingResult.rejectValue("username", "error.username", "Username già esistente");
 			return "preRegister";
-			
+
 		}
-		
+
 		if (emailUtente != null) {
 			bindingResult.rejectValue("email", "error.email", "Email già esistente");
 			return "preRegister";
@@ -68,30 +68,46 @@ public class UtenteController {
 			return "preRegister";
 		}
 
-		return "redirect:/formlogin";
+		return "formlogin";
 	}
-	
+
 	@PostMapping("/formlogin")
-	public String login(@RequestParam String username, @RequestParam String password, HttpSession session, Model model) {
-		List<Utente> listaUtenti = utenteService.searchByUsername(username);
-		if (listaUtenti.isEmpty()) {
-			model.addAttribute("error", "Nessun utente registrato");
-			return "formlogin";
-		} else {
-			for (Utente ut : listaUtenti) {
-				if (ut.getPassword().equals(password)) {
-					session.setAttribute("Loggato", "SI");
-					session.setAttribute("utente", ut);    
-					model.addAttribute("message", "ciao " + username); 
-					return "message";
-				} else {
-					model.addAttribute("error", "Password sbagliata");
-					return "formlogin";
-				}
-			}
-		}    
-		return "message";
+	public String login(@Valid @ModelAttribute("utente") UtenteVoLogin utenteVoLogin, 
+	                    BindingResult bindingResult, HttpSession session) {
+
+		System.out.println("Username inserito: " + utenteVoLogin.getUsername());
+	    System.out.println("Password inserita: " + utenteVoLogin.getPassword());
+	    
+	    if (bindingResult.hasErrors()) {
+	        return "formlogin"; 
+	    }
+	    
+	    Utente utente = utenteService.findByUsername(utenteVoLogin.getUsername());
+
+	    if (utente == null) {
+	        bindingResult.rejectValue("username", "error.username", "L'username non esiste");
+	        return "formlogin";
+	    }
+	    System.out.println("Password memorizzata: " + utente.getPassword());
+
+	    
+	    if (!utente.getPassword().equals(utenteVoLogin.getPassword())) {
+	        bindingResult.rejectValue("password", "error.password", "Password errata");
+	        return "formlogin";
+	    }
+
+	   try {
+		   session.setAttribute("utente", utente);
+		    
+	   }catch (Exception e) {
+		   System.out.println("Errore durante l'impostazione della sessione: " + e.getMessage());
+			return "preRegister";
+		}
+
+	   return "home";
+	    
 	}
+
 
 	@PostMapping("/logout")
 	public String logout(HttpSession session,Model model) {
