@@ -55,21 +55,17 @@ public class Treno implements Bean {
 			this.foto = foto;
 		}
 	
-	 public Treno(String compagnia, String foto, String sigla, Double lunghezza, Double peso, Double prezzo ) {
+	 public Treno(String compagnia, String foto, String sigla, Double lunghezza, Double peso, Double prezzo, Utente utente ) {
 		 this.compagnia = compagnia;
 		 this.foto = foto;
 		 this.sigla = sigla;
 		 this.lunghezza = lunghezza;
 		 this.peso = peso;
 		 this.prezzo = prezzo;
-			
-		
-		
+		 this.utente = utente;			
 		}
 	
 	
-	
-
 
 
 	public int getId() {
@@ -142,8 +138,6 @@ public void getId(int id) {
 	public Utente getUtente() {
 		return utente;
 	}
-	
-	
 	public void setUtente(Utente utente) {
 		this.utente = utente;
 	}
@@ -181,8 +175,5 @@ public void getId(int id) {
 				+ getSigla() + ", getFoto()=" + getFoto() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
 				+ ", toString()=" + super.toString() + "]";
 	}
-
-
-
 
 }

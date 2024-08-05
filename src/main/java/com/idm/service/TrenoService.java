@@ -128,8 +128,6 @@ public class TrenoService {
 	}
 
 	public List<Treno> retriveWithOrder(String ordine, String direction) {
-//        BeanFactory factory = new AnnotationConfigApplicationContext(Beans.class);
-//        TrenoDao dao = factory.getBean("TrenoDao", TrenoDao.class);
         List<Treno> u = trenoDao.retriveWithOrder(ordine, direction);
         System.out.println(u);
 		return u;
@@ -139,6 +137,8 @@ public class TrenoService {
         return trenoFilterService.filterTreni(filter);
     }
     
+    //--------CONVERSIONI VO----------//
+    
     public List<TrenoVO> getTreniVO() {
         List<Treno> treni = trenoDao.retrive(); 
         List<TrenoVO> trenoVOs = new ArrayList<>();
@@ -146,7 +146,7 @@ public class TrenoService {
             TrenoVO vo = new TrenoVO();
             
             vo.setId(treno.getId());
-            vo.setUtente(treno.getUtente());
+            vo.setUtenteUsername(treno.getUtente().getUsername());
             vo.setPrezzo(treno.getPrezzo());
             vo.setPeso(treno.getPeso());
             vo.setLunghezza(treno.getLunghezza());
@@ -159,34 +159,24 @@ public class TrenoService {
         return trenoVOs;
     }
     
-    public List<TrenoVO> searchTreni(TrenoFilter filter) {
-        List<Treno> treni = trenoDao.retrive(); 
-        List<TrenoVO> trenoVOs = new ArrayList<>();
-
-        for (Treno treno : treni) {
-            boolean matches = false;
-
-            // Controlla se il termine di ricerca è presente in sigla, compagnia o utente
-            if (treno.getSigla().contains(filter.getTermineRicerca()) ||
-                treno.getCompagnia().contains(filter.getTermineRicerca()) ||
-                treno.getUtente().getNome().contains(filter.getTermineRicerca())) {
-                matches = true;
-            }
-
-            if (matches) {
-                TrenoVO vo = new TrenoVO();
-                vo.setId(treno.getId());
-                vo.setUtente(treno.getUtente());
-                vo.setPrezzo(treno.getPrezzo());
-                vo.setPeso(treno.getPeso());
-                vo.setLunghezza(treno.getLunghezza());
-                vo.setSigla(treno.getSigla());
-                vo.setFoto(treno.getFoto());
-                vo.setCompagnia(treno.getCompagnia());
-                trenoVOs.add(vo);
-            }
-        }
-        return trenoVOs;
+    
+    public List<TrenoVO> retriveWithOrderVO(String ordine, String direction) {
+    	List<Treno> u = trenoDao.retriveWithOrder(ordine, direction);
+    	List<TrenoVO> trenoVOs = new ArrayList<>();
+    	for (Treno treno : u) {
+    		TrenoVO vo = new TrenoVO();
+            vo.setId(treno.getId());
+            vo.setUtenteUsername(treno.getUtente().getUsername());
+            vo.setPrezzo(treno.getPrezzo());
+            vo.setPeso(treno.getPeso());
+            vo.setLunghezza(treno.getLunghezza());
+            vo.setSigla(treno.getSigla());
+            vo.setFoto(treno.getFoto());
+            vo.setCompagnia(treno.getCompagnia());
+    	
+            trenoVOs.add(vo);
+    	}    	
+    	return trenoVOs;
     }
-	
+    
 }
