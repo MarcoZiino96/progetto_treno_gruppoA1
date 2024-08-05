@@ -30,44 +30,17 @@ import com.idm.vo.TrenoVO;
 		@Autowired
 		private TrenoService trenoService;
 				
-	    @GetMapping ("/home")
-	    public String home(Model model) {
-	        return "home"; 
-	    }
-//	    
-//	    @GetMapping("/home")
-//	    public String search(@RequestParam(required = false) String termineRicerca,
-//	                       Model model) {
-//	        
-//	        TrenoFilter filter = new TrenoFilter();
-//	        filter.setTermineRicerca(termineRicerca);
-//	        
-//	        List<TrenoVO> treni = trenoService.searchTreni(filter);
-//	        model.addAttribute("treni", treni);
-//	        return "home";
-//	    }
-//	    
-//	}
+		@GetMapping("/search")
+		public String ordina(
+		                     @RequestParam(required = false) String ordinamento,
+		                     @RequestParam(required = false) String direction,
+		                     Model model) {
 
-//	    @GetMapping("/search")
-//	    public String search(@RequestParam(required = false) String termineRicerca, Model model) {
-//	        List<TrenoVO> treni;
-//	        
-//	        if (termineRicerca != null && !termineRicerca.isEmpty()) {
-//	            TrenoFilter filter = new TrenoFilter();
-//	            filter.setTermineRicerca(termineRicerca);
-//	            treni = trenoService.searchTreni(filter);
-//	        } else {
-//	            treni = trenoService.getTreniVO();
-//	        }
-//
-//	        model.addAttribute("treni", treni);
-//	        return "search"; // Cerca il file search.jsp in /WEB-INF/jsp/
-//	    }
+			List<TrenoVO> treni = trenoService.retriveWithOrderVO(ordinamento, direction);
 
-		
-
-		
+		    model.addAttribute("treni", treni);
+		    return "search"; 
+		}
 
 	}
 

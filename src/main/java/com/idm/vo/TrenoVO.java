@@ -14,10 +14,18 @@ public class TrenoVO {
 	private String sigla;
 	private String foto;
 	private String compagnia;
+	private String utenteUsername;
 
 	
 	
 	
+
+	public String getUtenteUsername() {
+		return utenteUsername;
+	}
+	public void setUtenteUsername(String utenteUsername) {
+		this.utenteUsername = utenteUsername;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -2,13 +2,17 @@ package com.idm.test1;
 
 import java.util.List;
 
+import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.idm.config.Beans;
+import com.idm.dao.UtenteDao;
 import com.idm.entity.Treno;
 import com.idm.entity.TrenoFilter;
+import com.idm.entity.Utente;
 import com.idm.service.TrenoService;
+
 
 public class CategoriaDaoTest {
 
@@ -21,28 +25,30 @@ public class CategoriaDaoTest {
 		
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
         trenoService = context.getBean(TrenoService.class);
+    
+        
+        
+        Utente utente1 = findUtente(1);
+        Utente utente2 = findUtente(2);
+        Utente utente3 = findUtente(3);
+        Utente utente4 = findUtente(4);
+        Utente utente5 = findUtente(5);
+        Utente utente6 = findUtente(6);
 
-		Treno  treno1 = new Treno("TN", "foto1","HPPPP", 30.0, 5.0, 5.4 );
-		Treno  treno2= new Treno("FR", "foto2","HPPPPPR", 50.0, 8.0, 4.4 );
-		Treno  treno3= new Treno("IT", "foto3","HPP", 40.0, 6.0, 2.0 );
-		Treno  treno4= new Treno("TN", "foto4","HCCCC", 60.0, 5.3, 1.2 );
-		Treno  treno5= new Treno("FR", "foto5","HRPP", 34.0, 5.4, 1.8 );
-		Treno  treno6= new Treno("IT", "foto6","HCCC", 31.0, 6.1, 1.4 );
-
-//		Treno  treno1 = new Treno(1.4, 5.0, 30.0, "TN", "x");
-//		Treno  treno2= new Treno(1.4, 5.0, 30.0, "TN", "x");
-//		Treno  treno3= new Treno(1.4, 5.0, 30.0, "TN", "x");
-//		Treno  treno4= new Treno(1.4, 5.0, 30.0, "TN", "x");
-//		Treno  treno5= new Treno(1.4, 5.0, 30.0, "TN", "x");
-//		Treno  treno6= new Treno(2.4, 7.0, 32.0, "TN", "x");
+		Treno  treno1 = new Treno("TN", "foto1","HPPPP", 30.0, 5.0, 5.4, utente1);
+		Treno  treno2= new Treno("FR", "foto2","HPPPPPR", 50.0, 8.0, 4.4, utente2 );
+		Treno  treno3= new Treno("IT", "foto3","HPP", 40.0, 6.0, 2.0, utente3 );
+		Treno  treno4= new Treno("TN", "foto4","HCCCC", 60.0, 5.3, 1.2, utente4 );
+		Treno  treno5= new Treno("FR", "foto5","HRPP", 34.0, 5.4, 1.8, utente5 );
+		Treno  treno6= new Treno("IT", "foto6","HCCC", 31.0, 6.1, 1.4, utente6 );
 
 				
-		trenoService.createTreno(treno1);
-		trenoService.createTreno(treno2);
-		trenoService.createTreno(treno3);
-		trenoService.createTreno(treno4);
-		trenoService.createTreno(treno5);
-		trenoService.createTreno(treno6);
+//		trenoService.createTreno(treno1);
+//		trenoService.createTreno(treno2);
+//		trenoService.createTreno(treno3);
+//		trenoService.createTreno(treno4);
+//		trenoService.createTreno(treno5);
+//		trenoService.createTreno(treno6);
 		
 		
 //		treno1.setLunghezza(40.0);
@@ -110,6 +116,14 @@ public class CategoriaDaoTest {
 	
 	public static void updateTreno(Treno treno, int id) {
 		trenoService.update(treno, id);
+	}
+	
+	public static Utente findUtente(int id) {
+		BeanFactory factory = new AnnotationConfigApplicationContext(Beans.class);
+		UtenteDao dao = factory.getBean(UtenteDao.class); 
+		Utente u = dao.find(id);
+		System.out.println("Trovato Utente: " + u);
+		return u;
 	}
 	
 }

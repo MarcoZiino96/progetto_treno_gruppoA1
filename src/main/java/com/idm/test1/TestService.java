@@ -17,7 +17,7 @@ import com.idm.service.TrenoService;
 import com.idm.service.UtenteService;
 public class TestService {
 	
-	//@Autowired
+	@Autowired
 	private static UtenteService utenteService;
 
 
@@ -31,6 +31,16 @@ public class TestService {
         String email = "giovanni.rossi@example.com";
         String password = "securePassword123";
 		//findUtente(1);
+
+//		Utente utente1 = testCreaUtente("Lollo", "My", "lollomy@gmail.com", LocalDate.parse("1980-01-01"), "aaaaaaa", "lollomy98");
+//		Utente utente2 = testCreaUtente("Mario", "Leonardi", "mariuzzo@gmail.com", LocalDate.parse("1989-09-06"), "aaaaab", "marioleo89");
+//		Utente utente3 = testCreaUtente("Martina", "Consoli", "marti@gmail.com", LocalDate.parse("1989-09-06"), "aaaaab", "marti88");
+//		Utente utente4 = testCreaUtente("Marzia", "Groppo", "marzia@gmail.com", LocalDate.parse("1988-09-03"), "aaaaab", "marzia91");
+//		Utente utente5 = testCreaUtente("Alberto", "Bergesio", "albi@gmail.com", LocalDate.parse("1990-09-20"), "aaafab", "albi90");
+//		Utente utente6 = testCreaUtente("Roberto", "Piumatti", "robi@gmail.com", LocalDate.parse("1987-09-02"), "aavaab", "robi87");
+//		//		updateUtente( utente, 2);
+//		testFindUtenti();
+
 
 	
 	}
