@@ -117,11 +117,17 @@
 
 <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
 <dependency>
-    <groupId>org.hibernate.validator</groupId>
-    <artifactId>hibernate-validator</artifactId>
-    <version>8.0.1.Final</version>
+    <groupId>javax.servlet</groupId>
+    <artifactId>jstl</artifactId>
+    <version>1.2</version>
 </dependency>
 
+<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+<dependency>
+    <groupId>org.hibernate.validator</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.2.4.Final</version>
+</dependency>
     
   </dependencies>
   
