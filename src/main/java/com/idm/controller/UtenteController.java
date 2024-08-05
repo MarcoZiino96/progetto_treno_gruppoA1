@@ -51,4 +51,17 @@ public class UtenteController {
 		model.addAttribute("message", "Sei stato disconnesso con successo.");
 		return "redirect:/";
 	}
+
+	@GetMapping("/header")
+	public String showHeader(UtenteVoLogin utenteVo) {
+		
+		return "header";
+	}
+	
+	@GetMapping("/footer")
+	public String showFooter(UtenteVoLogin utenteVo) {
+		
+		return "footer";
+	}
+
 }
