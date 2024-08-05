@@ -158,5 +158,35 @@ public class TrenoService {
         }
         return trenoVOs;
     }
+    
+    public List<TrenoVO> searchTreni(TrenoFilter filter) {
+        List<Treno> treni = trenoDao.retrive(); 
+        List<TrenoVO> trenoVOs = new ArrayList<>();
+
+        for (Treno treno : treni) {
+            boolean matches = false;
+
+            // Controlla se il termine di ricerca è presente in sigla, compagnia o utente
+            if (treno.getSigla().contains(filter.getTermineRicerca()) ||
+                treno.getCompagnia().contains(filter.getTermineRicerca()) ||
+                treno.getUtente().getNome().contains(filter.getTermineRicerca())) {
+                matches = true;
+            }
+
+            if (matches) {
+                TrenoVO vo = new TrenoVO();
+                vo.setId(treno.getId());
+                vo.setUtente(treno.getUtente());
+                vo.setPrezzo(treno.getPrezzo());
+                vo.setPeso(treno.getPeso());
+                vo.setLunghezza(treno.getLunghezza());
+                vo.setSigla(treno.getSigla());
+                vo.setFoto(treno.getFoto());
+                vo.setCompagnia(treno.getCompagnia());
+                trenoVOs.add(vo);
+            }
+        }
+        return trenoVOs;
+    }
 	
 }
