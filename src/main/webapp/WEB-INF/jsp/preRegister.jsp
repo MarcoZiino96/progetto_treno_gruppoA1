@@ -58,9 +58,9 @@
 </head>
 <body>
 
-        <header>
+        
          <jsp:include page="header.jsp" />
-       </header>
+       
   <div class="container">
         <h2>Registrazione Utente</h2>
       

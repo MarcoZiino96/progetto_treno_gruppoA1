@@ -30,16 +30,26 @@ import com.idm.vo.TrenoVO;
 		@Autowired
 		private TrenoService trenoService;
 				
-		@GetMapping("/search")
+		@GetMapping("/order")
 		public String ordina(
 		                     @RequestParam(required = false) String ordinamento,
 		                     @RequestParam(required = false) String direction,
 		                     Model model) {
 
-			List<TrenoVO> treni = trenoService.retriveWithOrderVO(ordinamento, direction);
+		    if (ordinamento == null || ordinamento.isEmpty()) {
+		        ordinamento = "compagnia"; 
+		    }
+		    if (direction == null || direction.isEmpty()) {
+		        direction = "ASC"; 
+		    }
 
-		    model.addAttribute("treni", treni);
-		    return "search"; 
+		
+		    List<TrenoVO> treni = trenoService.retriveWithOrderVO(ordinamento, direction);
+		    
+		    model.addAttribute("treni",treni);
+		    model.addAttribute("ordinamento", ordinamento); 
+		    model.addAttribute("direction", direction); 
+		    return "order"; 
 		}
 
 	}

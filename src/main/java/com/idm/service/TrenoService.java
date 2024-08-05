@@ -8,7 +8,10 @@ import org.springframework.stereotype.Component;
 import com.idm.abstractClasses.AbstractVagone;
 import com.idm.config.Beans;
 import com.idm.dao.TrenoDao;
+import com.idm.entity.Factory;
 import com.idm.entity.FrecciaRossaBuilder;
+import com.idm.entity.ItaloBuilder;
+import com.idm.entity.TreNordBuilder;
 import com.idm.entity.Treno;
 import com.idm.entity.TrenoFilter;
 import com.idm.entity.Utente;
@@ -23,6 +26,10 @@ public class TrenoService {
 	private TrenoDao trenoDao;
 	@Autowired
 	private FrecciaRossaBuilder frecciaRossaBuilder;
+	@Autowired
+	private ItaloBuilder italoBuilder;
+	@Autowired
+	private TreNordBuilder treNordBuilder;
     @Autowired     
     private TrenoFilterService trenoFilterService;
 
@@ -37,11 +44,10 @@ public class TrenoService {
 		return trenoFind;
 	}
 
-
 	
-	public Treno createTreno(String string) {
-	    
-        Treno treno = frecciaRossaBuilder.creaTreno(string);
+	public Treno createTreno(String string, Factory compagnia){
+
+       Treno treno = selectFactory(string, compagnia);
     
         if(treno.getVagoni().isEmpty()) {
         	throw new RuntimeException("La lista è vuota");
@@ -56,8 +62,9 @@ public class TrenoService {
                 .sum();
         
         double pesoTreno = treno.getVagoni().stream()
-                .mapToDouble(AbstractVagone::getLunghezza) 
+                .mapToDouble(AbstractVagone::getPeso) 
                 .sum();
+        
         treno.setSigla(string);
         treno.setPrezzo(prezzoTreno);
         treno.setLunghezza(lunghezzaTreno);
@@ -168,4 +175,19 @@ public class TrenoService {
     	return trenoVOs;
     }
     
+    public Treno selectFactory(String sigla, Factory compagnia) {
+        switch(compagnia) {
+            case FR:
+                return frecciaRossaBuilder.creaTreno(sigla);
+            case IT:
+                return italoBuilder.creaTreno(sigla);
+            case TN:
+                return treNordBuilder.creaTreno(sigla);
+            default:
+                throw new IllegalArgumentException("Compagnia non supportata: " + compagnia);
+        }
+    }
 }
+    	
+ 
+

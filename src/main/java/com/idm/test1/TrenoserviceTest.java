@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import com.idm.config.Beans;
 import com.idm.dao.AbstractVagoneDao;
+import com.idm.entity.Factory;
 import com.idm.entity.Treno;
 import com.idm.service.TrenoService;
 
@@ -25,11 +26,11 @@ public class TrenoserviceTest {
 //      System.out.println(treno.getVagoni());
       
        
-       trenoService.createTreno("hppp");
+     
 	}
 	
-	public static void creaTreno(String string) {
-		trenoService.createTreno(string);
+	public static void creaTreno(String string, Factory factory ) {
+		trenoService.createTreno(string, Factory.TN);
 	}
 	
 	public static void findTreno(int id) {

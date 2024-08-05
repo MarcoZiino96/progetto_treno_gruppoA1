@@ -1,6 +1,4 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -8,15 +6,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista Treni</title>
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/home.css">
+    <style>
+    @charset "UTF-8";
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+.titleOrder{
+text-align: center;
+}
+.titleOrder h2{
+margin: 20px;
+padding-top: 40px;
+}
+
+.formOrder{
+text-align: center;
+margin: 30px;
+}
+    </style>
 </head>
 
 <body>
-   <h1>Benvenuto nella pagina dei treni!</h1>
+
+    <jsp:include page="header.jsp" />
    
-    <h2>Lista dei treni disponibili</h2>
-           
-         <form>
+   <div class="titleOrder"> 
+    <h2>Ricerca un treno con l'ordinamento che preferisci</h2>
+   </div> 
+        
+       <form class="formOrder">
         <label for="ordinamento">Ordina per:</label>
     	<select id="ordinamento" name="ordinamento">
         <option value="compagnia">Compagnia</option>

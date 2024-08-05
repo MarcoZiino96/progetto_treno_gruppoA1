@@ -22,6 +22,8 @@ public class Utente implements Bean{
 	private String username;
 	private String email;
 	
+	
+	
 	public Utente() {
 	}
 

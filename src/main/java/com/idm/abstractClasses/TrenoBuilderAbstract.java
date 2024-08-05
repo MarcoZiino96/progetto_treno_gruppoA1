@@ -36,10 +36,10 @@ public abstract class TrenoBuilderAbstract {
 			vagoni = creaLocomotiva(strgMaiuscola);
 
 			if(strgMaiuscola.charAt(0) == 'H' && strgMaiuscola.charAt(input.length() - 1) == 'H' )
-				vagoni = creaVagoni(strgMaiuscola.substring(1, strgMaiuscola.length() - 1));
+				vagoni.addAll(creaVagoni(strgMaiuscola.substring(1, strgMaiuscola.length() - 1)));
 
 			else if (strgMaiuscola.charAt(0) == 'H')
-				vagoni = creaVagoni(strgMaiuscola.substring(1));
+				vagoni.addAll(creaVagoni(strgMaiuscola.substring(1)));
 			
 			for (AbstractVagone vagone : vagoni) {
 	            vagone.setTreno(treno); 

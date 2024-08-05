@@ -121,6 +121,10 @@
                     
                    
                     <c:if test="${not empty sessionScope.utente}">
+                    
+                    <a href="order" class="btn">
+                   Ricerca Ordinamento
+                   </a>
                      <span>
                     ${sessionScope.utente.nome} 
                     </span>
@@ -130,7 +134,6 @@
                     <form:form action="logout" method="post">
                     <input type="submit" value="Logout" class="btn btn-primary" />
                     </form:form> 
-                    
                     </c:if>
                     
                     <c:if test="${empty sessionScope.utente}">

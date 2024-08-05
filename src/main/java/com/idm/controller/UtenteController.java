@@ -111,16 +111,9 @@ public class UtenteController {
 
 	@GetMapping("/header")
 	public String showHeader(UtenteVoLogin utenteVo) {
-		
 		return "header";
 	}
 	
-//	@GetMapping("/footer")
-//	public String showFooter(UtenteVoLogin utenteVo) {
-//		
-//		return "footer";
-//	}
-
 }
 
 
