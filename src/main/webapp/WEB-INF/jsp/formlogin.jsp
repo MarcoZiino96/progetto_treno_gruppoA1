@@ -4,7 +4,9 @@
 
 <body> 
 
-<form  method="post" action="formlogin">  
+<form  method="post" action="formlogin"> 
+           <div>${message}</div>
+           
 	UserName : <input id="username" name="username"/> <br><br>  
 	Password : <input id="password" name="password"/> <br><br>   
 	<input type="submit" name="submit" formaction="login" value="Login">  

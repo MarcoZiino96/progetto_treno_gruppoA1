@@ -30,8 +30,8 @@ public class UtenteController {
 	}
 
 	@GetMapping("/preRegister")
-	public String showRegister(Model model) {
-		model.addAttribute("utente", new UtenteVO());
+	public String showRegister(@ModelAttribute("utente") UtenteVO utenteVo) {
+	
 		return "preRegister";
 	}
 
