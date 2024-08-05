@@ -8,6 +8,10 @@
 </head>
 <body>
 
+       <header>
+          <jsp:include page="header.jsp" />
+       </header>
+
  <h1>Benvenuto nell'Home Page!</h1>
 
 </body>

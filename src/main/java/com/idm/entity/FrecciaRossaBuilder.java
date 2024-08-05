@@ -19,54 +19,37 @@ import com.idm.service.TrenoService;
 @Component
 public class FrecciaRossaBuilder extends TrenoBuilderAbstract {
 
-	    @Autowired
+	   @Autowired
 	    private VagoneRistorante vagoneRistorante;
 
 	    @Autowired
 	    private Locomotiva locomotiva;
 
-	    @Autowired
+	   @Autowired
 	    private VagonePasseggeri vagonePasseggeri;
 
-	    @Autowired
+       @Autowired
 	    private VagoneCargo vagoneCargo;
-	    
-	  //  @Autowired
-	    private AbstractVagoneDao abstractVagoneDao;
-	    
-	   
+	       
 
 	    @Override
 	    protected AbstractVagone getCostruisciVagoneCargo() {
 	    	
-	    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-	        abstractVagoneDao = context.getBean(AbstractVagoneDao.class);
-	        
-	    	abstractVagoneDao.add(vagoneRistorante);
 	        return vagoneCargo;
 	    }
 
 	    @Override
 	    protected AbstractVagone getCostruisciLocomotiva() {
-	    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-	        abstractVagoneDao = context.getBean(AbstractVagoneDao.class);
-	    	abstractVagoneDao.add(locomotiva);
 	        return locomotiva;
 	    }
 
 	    @Override
 	    protected AbstractVagone getCostruisciVagoneRistorante() {
-	    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-	        abstractVagoneDao = context.getBean(AbstractVagoneDao.class);
-	    	abstractVagoneDao.add(vagoneRistorante);
 	        return vagoneRistorante;
 	    }
 
 	    @Override
 	    protected AbstractVagone getCostruisciVagonePasseggieri() {
-	    	AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-	        abstractVagoneDao = context.getBean(AbstractVagoneDao.class);
-	    	abstractVagoneDao.add(vagonePasseggeri);
 	        return vagonePasseggeri;
 	    }
 

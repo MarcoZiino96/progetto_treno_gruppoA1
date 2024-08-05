@@ -23,7 +23,7 @@ public class UtenteController {
 	@GetMapping("/formlogin")
 	public String login(@ModelAttribute("utente") UtenteVoLogin utenteVoLogin, Model model ) {
 		
-		model.addAttribute("message", "benvenuto nel login");
+		model.addAttribute("message1", "benvenuto nel login");
 		return "formlogin";
 	}
 
@@ -74,9 +74,6 @@ public class UtenteController {
 	public String login(@Valid @ModelAttribute("utente") UtenteVoLogin utenteVoLogin, 
 	                    BindingResult bindingResult, HttpSession session) {
 
-		System.out.println("Username inserito: " + utenteVoLogin.getUsername());
-	    System.out.println("Password inserita: " + utenteVoLogin.getPassword());
-	    
 	    if (bindingResult.hasErrors()) {
 	        return "formlogin"; 
 	    }
@@ -87,8 +84,6 @@ public class UtenteController {
 	        bindingResult.rejectValue("username", "error.username", "L'username non esiste");
 	        return "formlogin";
 	    }
-	    System.out.println("Password memorizzata: " + utente.getPassword());
-
 	    
 	    if (!utente.getPassword().equals(utenteVoLogin.getPassword())) {
 	        bindingResult.rejectValue("password", "error.password", "Password errata");
@@ -109,9 +104,8 @@ public class UtenteController {
 
 
 	@PostMapping("/logout")
-	public String logout(HttpSession session,Model model) {
+	public String logout( HttpSession session) {
 		session.invalidate();
-		model.addAttribute("message", "Sei stato disconnesso con successo.");
 		return "redirect:/formlogin";
 	}
 

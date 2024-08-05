@@ -55,8 +55,14 @@
        
     </style>
 </head>
-<body> 
 
+    <body> 
+
+       <header>
+          <jsp:include page="header.jsp" />
+       </header>
+
+       <h2>${message1}</h2>
        <h2>${message}</h2>
     
        <form:form modelAttribute="utente" action="formlogin" method="post">

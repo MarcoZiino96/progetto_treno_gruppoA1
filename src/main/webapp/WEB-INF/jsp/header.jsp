@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,22 +89,26 @@
             background-color: #c0392b;
             border-color: #c0392b;
         }
+        
+        span{
+        margin-right: 0.2rem;
+        margin-bottom: 0.2rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <header>
         <nav class="navbar navbar-expand-lg">
+        
             <div class="container">
-                <a class="navbar-brand" href="index.jsp">
-                   <img src="<%=request.getContextPath()+ "/media/LogoSitoTreno.png"%>" alt="Foto Logo">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+               
+               
                 <div class="collapse navbar-collapse" id="navbarContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.jsp">Home</a>
+                            <a class="nav-link" href="home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="about.jsp">Chi siamo</a>
@@ -111,25 +117,31 @@
                             <a class="nav-link" href="contact.jsp">Contatti</a>
                         </li>
                     </ul>
-                    <form class="search-form d-flex mx-auto mb-2 mb-lg-0">
-                        <div class="input-group">
-                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn" type="submit">
-                                <i class="bi bi-search"></i>
-                            </button>
-                        </div>
-                    </form>
                     <div class="user-actions">
-                        <a href="login.jsp" class="btn">Login</a>
-                        <a href="register.jsp" class="btn btn-primary ms-2">Registrati</a>
+                    
+                   
+                    <c:if test="${not empty sessionScope.utente}">
+                     <span>
+                    ${sessionScope.utente.nome} 
+                    </span>
+                     <span>
+                    ${sessionScope.utente.cognome} 
+                    </span>
+                    <form:form action="logout" method="post">
+                    <input type="submit" value="Logout" class="btn btn-primary" />
+                    </form:form> 
+                    
+                    </c:if>
+                    
+                    <c:if test="${empty sessionScope.utente}">
+                         <a href="formlogin" class="btn">Login</a>
+                         <a href="preRegister" class="btn">Registrati</a>
+                    </c:if>
+                    
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-
-    <!-- Your page content goes here -->
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
