@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.idm.entity.Utente;
 import com.idm.service.UtenteService;
 import com.idm.vo.UtenteVO;
-import com.idm.vo.UtenteVoLogin;
+import com.idm.vo.UtenteVOLogin;
+
 
 @Controller
 public class UtenteController {
@@ -21,7 +22,7 @@ public class UtenteController {
 	UtenteService utenteService;
 
 	@GetMapping("/formlogin")
-	public String login(@ModelAttribute("utente") UtenteVoLogin utenteVoLogin, Model model ) {
+	public String login(@ModelAttribute("utente") UtenteVOLogin utenteVoLogin, Model model ) {
 		
 		model.addAttribute("message1", "benvenuto nel login");
 		return "formlogin";
@@ -71,7 +72,7 @@ public class UtenteController {
 	}
 
 	@PostMapping("/formlogin")
-	public String login(@Valid @ModelAttribute("utente") UtenteVoLogin utenteVoLogin, 
+	public String login(@Valid @ModelAttribute("utente") UtenteVOLogin utenteVoLogin, 
 	                    BindingResult bindingResult, HttpSession session) {
 
 	    if (bindingResult.hasErrors()) {
@@ -110,7 +111,7 @@ public class UtenteController {
 	}
 
 	@GetMapping("/header")
-	public String showHeader(UtenteVoLogin utenteVo) {
+	public String showHeader(UtenteVOLogin utenteVo) {
 		return "header";
 	}
 	

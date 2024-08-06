@@ -63,7 +63,7 @@
        </header>
 
        <h2>${message1}</h2>
-       <h2>${message}</h2>
+
     
        <form:form modelAttribute="utente" action="formlogin" method="post">
             <label for="username">Username:</label>

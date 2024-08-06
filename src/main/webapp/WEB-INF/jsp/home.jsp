@@ -95,7 +95,8 @@ form {
 			<button type="submit" class="btn">Crea Treno</button>
 		</form>
 
-		<c:if test="${not empty treno}">
+<c:if test="${empty sessionScope.utente}">
+		
 			<div class="train-details">
 				<h2>Dattagli Treno</h2>
 				<div class="info">
@@ -116,7 +117,7 @@ form {
 					</c:choose>
 				</div>
 			</div>
-		</c:if>
 	</div>
+</c:if>
 </body>
 </html>

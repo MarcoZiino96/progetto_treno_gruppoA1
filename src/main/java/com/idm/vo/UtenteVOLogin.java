@@ -3,7 +3,7 @@ package com.idm.vo;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-public class UtenteVoLogin {
+public class UtenteVOLogin {
 
 	@NotBlank(message = "username obbligatorio")
     @Pattern(regexp ="^(?=.*[0-9])(?=.*[a-z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>.]).{5,}$",

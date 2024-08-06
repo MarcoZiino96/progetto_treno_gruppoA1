@@ -14,7 +14,7 @@ import com.idm.dao.VagoneCargoDao;
 import com.idm.dao.VagonePasseggeriDao;
 import com.idm.dao.VagoneRistoranteDao;
 import com.idm.interfaces.Vagone;
-import com.idm.service.TrenoService;
+
 
 @Component
 public class FrecciaRossaBuilder extends TrenoBuilderAbstract {
