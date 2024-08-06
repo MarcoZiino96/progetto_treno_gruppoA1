@@ -101,7 +101,7 @@ margin: 30px;
                 <td>${treno.lunghezza}</td>
                 <td>${treno.peso}</td>
                 <td>${treno.prezzo}</td>
-                <td>${treno.utenteUsername}</td>
+                <td>${treno.utente.username}</td>
             </tr>
         </c:forEach>
     </tbody>

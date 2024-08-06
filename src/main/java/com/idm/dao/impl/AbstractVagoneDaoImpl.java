@@ -17,7 +17,7 @@ public class AbstractVagoneDaoImpl extends DaoImpl implements AbstractVagoneDao 
 	@Transactional
 	public AbstractVagone add(AbstractVagone vc) {
 
-           manager.persist(vc);
+           manager.merge(vc);
        
         return vc;
 	}

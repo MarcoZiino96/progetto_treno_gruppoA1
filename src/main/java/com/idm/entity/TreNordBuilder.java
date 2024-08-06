@@ -8,16 +8,16 @@ import com.idm.abstractClasses.TrenoBuilderAbstract;
 
 @Component
 public class TreNordBuilder extends TrenoBuilderAbstract {
-	 @Autowired
+	    @Autowired
 	    private VagoneRistorante vagoneRistorante;
 
 	    @Autowired
 	    private Locomotiva locomotiva;
 
-	   @Autowired
+	    @Autowired
 	    private VagonePasseggeri vagonePasseggeri;
 
-    @Autowired
+        @Autowired
 	    private VagoneCargo vagoneCargo;
 	       
 

@@ -45,7 +45,7 @@ public class TrenoService {
 	}
 
 	
-	public Treno createTreno(String string, Factory compagnia){
+	public Treno createTreno(String string, Factory compagnia, Utente utente){
 
        Treno treno = selectFactory(string, compagnia);
     
@@ -69,9 +69,38 @@ public class TrenoService {
         treno.setPrezzo(prezzoTreno);
         treno.setLunghezza(lunghezzaTreno);
         treno.setPeso(pesoTreno);
+        treno.setUtente(utente);
         trenoDao.create(treno);
        return treno;
 	}
+	
+	public Treno createTrenoProva(String string, Factory compagnia){
+
+	       Treno treno = selectFactory(string, compagnia);
+	    
+	        if(treno.getVagoni().isEmpty()) {
+	        	throw new RuntimeException("La lista è vuota");
+	        }
+	        
+	        double prezzoTreno = treno.getVagoni().stream()
+	                .mapToDouble(AbstractVagone::getPrezzo) 
+	                .sum();
+	        
+	        double lunghezzaTreno = treno.getVagoni().stream()
+	                .mapToDouble(AbstractVagone::getLunghezza) 
+	                .sum();
+	        
+	        double pesoTreno = treno.getVagoni().stream()
+	                .mapToDouble(AbstractVagone::getPeso) 
+	                .sum();
+	        
+	        treno.setSigla(string);
+	        treno.setPrezzo(prezzoTreno);
+	        treno.setLunghezza(lunghezzaTreno);
+	        treno.setPeso(pesoTreno);
+	        treno.setCompagnia(compagnia);
+	       return treno;
+		}
 
 	
 
@@ -88,6 +117,8 @@ public class TrenoService {
 		
 		return treno1;
 	}
+	
+	
 
 	public Treno update(Treno treno,int id) {
 
@@ -131,28 +162,6 @@ public class TrenoService {
         return trenoFilterService.filterTreni(filter);
     }
     
-    //--------CONVERSIONI VO----------//
-    
-    public List<TrenoVO> getTreniVO() {
-        List<Treno> treni = trenoDao.retrive(); 
-        List<TrenoVO> trenoVOs = new ArrayList<>();
-        for (Treno treno : treni) {
-            TrenoVO vo = new TrenoVO();
-            
-            vo.setId(treno.getId());
-            vo.setUtenteUsername(treno.getUtente().getUsername());
-            vo.setPrezzo(treno.getPrezzo());
-            vo.setPeso(treno.getPeso());
-            vo.setLunghezza(treno.getLunghezza());
-            vo.setSigla(treno.getSigla());
-            vo.setFoto(treno.getFoto());
-            vo.setCompagnia(treno.getCompagnia());
-            
-            trenoVOs.add(vo);
-        }
-        return trenoVOs;
-    }
-    
     
     public List<TrenoVO> retriveWithOrderVO(String ordine, String direction) {
     	List<Treno> u = trenoDao.retriveWithOrder(ordine, direction);
@@ -166,6 +175,7 @@ public class TrenoService {
             vo.setSigla(treno.getSigla());
             vo.setFoto(treno.getFoto());
             vo.setCompagnia(treno.getCompagnia());
+            vo.setUtente(treno.getUtente());
     	
             trenoVOs.add(vo);
     	}    	

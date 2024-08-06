@@ -2,6 +2,7 @@ package com.idm.vo;
 
 import java.util.Objects;
 
+import com.idm.entity.Factory;
 import com.idm.entity.Utente;
 
 public class TrenoVO {
@@ -13,19 +14,14 @@ public class TrenoVO {
 	private Double lunghezza;
 	private String sigla;
 	private String foto;
-	private String compagnia;
-	private String utenteUsername;
+	private Factory compagnia;
+
 
 	
 	
 	
 
-	public String getUtenteUsername() {
-		return utenteUsername;
-	}
-	public void setUtenteUsername(String utenteUsername) {
-		this.utenteUsername = utenteUsername;
-	}
+	
 	public Integer getId() {
 		return id;
 	}
@@ -68,15 +64,10 @@ public class TrenoVO {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public String getCompagnia() {
+	public Factory getCompagnia() {
 		return compagnia;
 	}
-	public void setCompagnia(String compagnia) {
-		this.compagnia = compagnia;
+	public void setCompagnia(Factory factory) {
+		this.compagnia = factory;
 	}
-
- 
-
-
-
 }
