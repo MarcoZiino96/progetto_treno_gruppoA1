@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -22,6 +23,7 @@ import com.idm.entity.Treno;
 import com.idm.entity.TrenoFilter;
 import com.idm.service.TrenoService;
 import com.idm.vo.TrenoVO;
+import com.idm.vo.UtenteVO;
 
 
 	@Controller	
@@ -29,6 +31,21 @@ import com.idm.vo.TrenoVO;
 		
 		@Autowired
 		private TrenoService trenoService;
+		
+		@GetMapping("/home")
+		public String showHome(@ModelAttribute("treno") TrenoVO trenoVo){
+			return "home";
+		}
+		
+		
+//		@PostMapping("/newTrain")
+//		public String creaTreno(@ModelAttribute("treno") TrenoVO trenoVo,HttpSession session,Model model){
+//			
+//			
+//			
+//		}
+		
+		
 				
 		@GetMapping("/order")
 		public String ordina(

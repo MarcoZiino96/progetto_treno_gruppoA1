@@ -106,14 +106,12 @@ public class TrenoService {
 	}
 
 	public void delete(Treno treno) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        trenoDao = context.getBean(TrenoDao.class);
+	
 		trenoDao.delete(treno);
 	}
 
 	public void delete(Integer id) {
-		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Beans.class);
-        trenoDao = context.getBean(TrenoDao.class);
+		
 		trenoDao.delete(id);
 	}
 
@@ -162,7 +160,6 @@ public class TrenoService {
     	for (Treno treno : u) {
     		TrenoVO vo = new TrenoVO();
             vo.setId(treno.getId());
-            vo.setUtenteUsername(treno.getUtente().getUsername());
             vo.setPrezzo(treno.getPrezzo());
             vo.setPeso(treno.getPeso());
             vo.setLunghezza(treno.getLunghezza());

@@ -33,7 +33,7 @@ public class UtenteController {
 
 		return "preRegister";
 	}
-
+	
 	@PostMapping("/postRegister")
 	public String registerUser(@Valid @ModelAttribute("utente") UtenteVO utenteVo, BindingResult bindingResult, Model model) {
 
